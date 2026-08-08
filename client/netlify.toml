@@ -1,0 +1,23 @@
+[build]
+  # Directory to run the build command from
+  base = "."
+  # Build command
+  command = "npm run build"
+  # Directory to publish (Vite outputs to dist/)
+  publish = "dist"
+
+# ── SPA Redirect ───────────────────────────────────────────────────────────────
+# This is CRITICAL for React Router to work on Netlify.
+# Without this, refreshing /q/exhibition or /admin/dashboard returns 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ── Security Headers ──────────────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
