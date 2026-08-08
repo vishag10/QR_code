@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { QRCodeSVG, QRCodeCanvas } from 'qrcode.react';
 
 const getInitialUrl = () => {
-  if (import.meta.env.VITE_EXHIBITION_URL && !import.meta.env.VITE_EXHIBITION_URL.includes('yourdomain.com') && !import.meta.env.VITE_EXHIBITION_URL.includes('onrender.com')) {
-    return import.meta.env.VITE_EXHIBITION_URL;
-  }
   if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
     return `${window.location.protocol}//${window.location.host}/q/exhibition`;
+  }
+  if (import.meta.env.VITE_EXHIBITION_URL && import.meta.env.VITE_EXHIBITION_URL.includes('tradearnfintech.com')) {
+    return import.meta.env.VITE_EXHIBITION_URL;
   }
   return 'https://qr.tradearnfintech.com/q/exhibition';
 };
