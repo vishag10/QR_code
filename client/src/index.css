@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── TradEarn Official Brand Design Tokens ────────────────────────────────── */
+:root {
+  --bg-dark: #080818;
+  --bg-mid: #0F0B2E;
+  --bg-surface: #15103D;
+  --text-primary: #FAF7FD;
+  --text-secondary: rgba(250, 247, 253, 0.7);
+  --lime-accent: #3CD500;
+  --brand-gradient: linear-gradient(135deg, #2632F2 0%, #5D25E1 40%, #A216CB 70%, #DC08B9 100%);
+  --hero-gradient: radial-gradient(circle at top left, #2632F2 0%, #5D25E1 35%, #A216CB 70%, #DC08B9 100%);
+}
+
 /* ── Global Reset & Base ───────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -17,8 +29,8 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0f0a1e;
-  color: #f1f0f7;
+  background-color: #080818;
+  color: #FAF7FD;
 }
 
 /* ── Custom Scrollbar ──────────────────────────────────────────────────────── */
@@ -27,100 +39,178 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #1a1030;
+  background: #080818;
 }
 ::-webkit-scrollbar-thumb {
-  background: #6d28d9;
+  background: #5D25E1;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7c3aed;
+  background: #A216CB;
 }
 
-/* ── Glass Card ────────────────────────────────────────────────────────────── */
+/* ── Component Layer ───────────────────────────────────────────────────────── */
 @layer components {
+  /* Glass Card with 10-15% transparency & soft radial glow */
   .glass-card {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl;
+    background: rgba(21, 16, 61, 0.35);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(250, 247, 253, 0.12);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px -10px rgba(38, 50, 242, 0.2), 0 0 50px -10px rgba(162, 22, 203, 0.15);
   }
 
   .glass-card-dark {
-    @apply bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl;
+    background: rgba(8, 8, 24, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(250, 247, 253, 0.1);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px -10px rgba(93, 37, 225, 0.25);
   }
 
-  /* Form input shared styles */
+  /* Translucent Form Inputs with Purple Borders & Lime Green Focus */
   .form-input {
-    @apply w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20
-           text-white placeholder-white/40 text-base
-           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-400
-           transition-all duration-200;
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border-radius: 0.75rem;
+    background: rgba(8, 8, 24, 0.6);
+    border: 1px solid rgba(93, 37, 225, 0.35);
+    color: #FAF7FD;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
   }
 
-  /* Primary gradient button */
+  .form-input::placeholder {
+    color: rgba(250, 247, 253, 0.35);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #3CD500;
+    box-shadow: 0 0 0 2px rgba(60, 213, 0, 0.25), 0 0 15px rgba(60, 213, 0, 0.15);
+  }
+
+  /* Brand Gradient Primary Button with Lime / Pink Glow */
   .btn-primary {
-    @apply w-full py-3.5 px-6 rounded-xl font-semibold text-white text-base
-           bg-gradient-to-r from-brand-600 to-brand-500
-           hover:from-brand-500 hover:to-brand-400
-           active:scale-[0.98] transition-all duration-200
-           shadow-lg shadow-brand-900/40
-           disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    color: #FAF7FD;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #2632F2 0%, #5D25E1 40%, #A216CB 70%, #DC08B9 100%);
+    box-shadow: 0 4px 25px rgba(220, 8, 185, 0.3), 0 0 15px rgba(38, 50, 242, 0.25);
+    transition: all 0.25s ease;
+    cursor: pointer;
   }
 
-  /* Secondary outline button */
+  .btn-primary:hover {
+    box-shadow: 0 6px 35px rgba(220, 8, 185, 0.5), 0 0 25px rgba(60, 213, 0, 0.3);
+    filter: brightness(1.1);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: none;
+    transform: none;
+  }
+
+  /* Secondary Outline Button */
   .btn-secondary {
-    @apply py-2.5 px-5 rounded-xl font-medium text-brand-300 text-sm
-           border border-brand-700 hover:border-brand-500 hover:text-white
-           transition-all duration-200;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    color: #FAF7FD;
+    font-size: 0.875rem;
+    background: rgba(21, 16, 61, 0.5);
+    border: 1px solid rgba(93, 37, 225, 0.4);
+    transition: all 0.2s ease;
   }
 
-  /* Badge */
-  .badge {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+  .btn-secondary:hover {
+    border-color: #3CD500;
+    color: #3CD500;
+    box-shadow: 0 0 15px rgba(60, 213, 0, 0.2);
+  }
+
+  /* Lime Accent Badge */
+  .badge-lime {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(60, 213, 0, 0.12);
+    color: #3CD500;
+    border: 1px solid rgba(60, 213, 0, 0.3);
   }
 }
 
-/* ── Animated gradient background ─────────────────────────────────────────── */
+/* ── Animated Background & Hero Glow ───────────────────────────────────────── */
 .animated-bg {
-  background: linear-gradient(135deg, #0f0a1e 0%, #1a0f3c 50%, #0f0a1e 100%);
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
+  background: radial-gradient(circle at top left, #0F0B2E 0%, #080818 60%, #050510 100%);
+  position: relative;
 }
 
-@keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Hero Special Radial Gradient Glow */
+.hero-glow-bg {
+  background: radial-gradient(circle at top left, #2632F2 0%, #5D25E1 35%, #A216CB 70%, #DC08B9 100%);
+  filter: blur(100px);
+  opacity: 0.25;
 }
 
-/* ── Floating orb decorations ──────────────────────────────────────────────── */
+/* ── Blurred Gradient Orbs ──────────────────────────────────────────────────── */
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.15;
+  filter: blur(90px);
+  opacity: 0.25;
   pointer-events: none;
 }
 
 /* ── Table styles ──────────────────────────────────────────────────────────── */
 .data-table {
-  @apply w-full border-collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .data-table th {
-  @apply px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider
-         text-brand-300 bg-white/5 border-b border-white/10 whitespace-nowrap;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(250, 247, 253, 0.6);
+  background: rgba(21, 16, 61, 0.4);
+  border-bottom: 1px solid rgba(250, 247, 253, 0.1);
+  white-space: nowrap;
 }
 
 .data-table td {
-  @apply px-4 py-3 text-sm text-white/80 border-b border-white/5;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: rgba(250, 247, 253, 0.85);
+  border-bottom: 1px solid rgba(250, 247, 253, 0.05);
 }
 
 .data-table tr:hover td {
-  @apply bg-white/5 text-white;
+  background: rgba(93, 37, 225, 0.1);
+  color: #FAF7FD;
   transition: background 0.15s ease;
 }
 
 .data-table tr:last-child td {
-  @apply border-b-0;
+  border-bottom: 0;
 }
 
 /* ── Print styles for QR code ──────────────────────────────────────────────── */

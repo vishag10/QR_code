@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import api from '../api/axios.js';
+import logo from '../assets/icon.png';
+import logo2 from '../assets/logo.png';
 
 const SpinnerIcon = () => (
   <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -80,29 +82,36 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="animated-bg min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
-      {/* Decorative orbs */}
-      <div className="orb w-80 h-80 bg-brand-700 top-[-100px] right-[-80px]" />
-      <div className="orb w-60 h-60 bg-indigo-800 bottom-[-60px] left-[-50px]" />
+    <div className="animated-bg min-h-screen flex items-center justify-center px-4 relative overflow-hidden bg-[#080818]">
+      {/* Hero Radial Glow Background */}
+      <div className="absolute top-0 left-0 w-full h-[500px] hero-glow-bg pointer-events-none" />
+
+      {/* Blurred Gradient Orbs */}
+      <div className="orb w-96 h-96 bg-[#2632F2] top-[-100px] right-[-80px]" />
+      <div className="orb w-80 h-80 bg-[#A216CB] bottom-[-60px] left-[-50px]" />
 
       <div className="relative z-10 w-full max-w-md animate-slide-up">
 
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-600 to-indigo-700 shadow-xl shadow-brand-900/50 mb-5">
-            <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round"
-                d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3" />
-            </svg>
+        {/* Header Branding */}
+        <div className="flex flex-row items-center justify-center gap-3.5 sm:gap-6 mb-6 sm:mb-8 max-w-full overflow-hidden">
+          <div className="h-14 sm:h-20 w-auto flex items-center justify-center shrink-0">
+            <img src={logo} alt="Icon Logo" className="h-full w-auto object-contain filter drop-shadow-[0_4px_16px_rgba(38,50,242,0.5)] scale-110 sm:scale-110" />
           </div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Admin Portal</h1>
-          <p className="text-white/50 mt-1 text-sm">Exhibition QR System — Secure Access</p>
+          <div className="h-10 sm:h-14 w-px bg-[#FAF7FD]/25 shrink-0" />
+          <div className="h-14 sm:h-20 w-auto max-w-[220px] sm:max-w-[320px] flex items-center justify-center shrink-0">
+            <img src={logo2} alt="TradeEarn Logo" className="h-full w-auto object-contain filter drop-shadow-[0_4px_16px_rgba(162,22,203,0.5)] scale-125 sm:scale-135" />
+          </div>
+        </div>
+
+        <div className="text-center mb-6">
+          <h1 className="text-2xl font-bold text-[#FAF7FD] tracking-tight">Admin Portal</h1>
+          <p className="text-[#FAF7FD]/60 mt-1 text-sm">Exhibition QR System — Secure Access</p>
         </div>
 
         {/* Login Card */}
-        <div className="glass-card p-8">
-          <h2 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-            <LockIcon />
+        <div className="glass-card p-7 rounded-3xl border border-[#FAF7FD]/12 shadow-[0_10px_50px_rgba(38,50,242,0.2)]">
+          <h2 className="text-lg font-semibold text-[#FAF7FD] mb-6 flex items-center gap-2">
+            <LockIcon className="text-[#3CD500]" />
             Sign In
           </h2>
 
@@ -191,8 +200,8 @@ export default function AdminLogin() {
 
         {/* Back link */}
         <div className="text-center mt-6">
-          <a href="/q/exhibition" className="text-white/30 text-xs hover:text-white/50 transition-colors">
-            ← Back to Exhibition Form
+          <a href="/q/exhibition" className="text-[#FAF7FD]/40 text-xs hover:text-[#3CD500] transition-colors">
+            ← Back to Visitor Registration
           </a>
         </div>
       </div>

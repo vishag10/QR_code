@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import api from '../api/axios.js';
+import logo from '../assets/icon.png';
+import logo2 from '../assets/logo.png';
 
 // ── Utility: format ISO date to readable local string ─────────────────────────
 function formatDate(iso) {
@@ -212,16 +214,15 @@ export default function AdminDashboard() {
 
         {/* ── Top Navigation ── */}
         <header className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center shadow-lg">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round"
-                  d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3" />
-              </svg>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <img src={logo} alt="Icon Logo" className="h-9 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(38,50,242,0.4)]" />
+              <div className="h-6 w-px bg-[#FAF7FD]/20" />
+              <img src={logo2} alt="TradeEarn Logo" className="h-8 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(162,22,203,0.4)]" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white leading-tight">Admin Dashboard</h1>
-              <p className="text-white/40 text-xs">Logged in as <span className="text-brand-400 font-medium">{username}</span></p>
+              <h1 className="text-xl font-bold text-[#FAF7FD] leading-tight">Admin Dashboard</h1>
+              <p className="text-[#FAF7FD]/50 text-xs">Logged in as <span className="text-[#3CD500] font-medium">{username}</span></p>
             </div>
           </div>
 
