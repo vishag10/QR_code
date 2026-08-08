@@ -1,6 +1,5 @@
 [build]
-  base    = "client"
-  command = "npm run build"
+  command = "cd client && npm install && npm run build"
   publish = "client/dist"
 
 [[redirects]]
@@ -11,6 +10,6 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options         = "DENY"
-    X-Content-Type-Options  = "nosniff"
-    Referrer-Policy         = "strict-origin-when-cross-origin"
+    X-Frame-Options        = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
