@@ -97,6 +97,29 @@ app.use((err, req, res, next) => {
 });
 
 // ─── Local Dev Server ─────────────────────────────────────────────────────────
+// ─── Self-Ping Keep-Alive for Render (Prevents 15-min Inactivity Sleep) ──────
+const https = require('https');
+const http = require('http');
+
+function startKeepAlive() {
+  const RENDER_URL = process.env.RENDER_EXTERNAL_URL || 'https://qr-code-azwt.onrender.com';
+  const TEN_MINUTES = 10 * 60 * 1000;
+
+  // Only auto-ping if on production/Render
+  if (process.env.NODE_ENV === 'production' || process.env.RENDER === 'true' || RENDER_URL.includes('onrender.com')) {
+    console.log(`⏰  Keep-alive routine started for ${RENDER_URL} (interval: 10m)`);
+    setInterval(() => {
+      const client = RENDER_URL.startsWith('https') ? https : http;
+      client.get(`${RENDER_URL}/api/health`, (res) => {
+        console.log(`📡  Keep-alive ping sent to ${RENDER_URL}/api/health [Status: ${res.statusCode}]`);
+      }).on('error', (err) => {
+        console.error('⚠️  Keep-alive ping failed:', err.message);
+      });
+    }, TEN_MINUTES);
+  }
+}
+
+// ─── Local / Render Server ───────────────────────────────────────────────────
 // process.env.VERCEL is set automatically when deployed to Vercel.
 // Skipping listen() in serverless avoids port-binding errors.
 if (process.env.VERCEL !== '1') {
@@ -107,6 +130,7 @@ if (process.env.VERCEL !== '1') {
       app.listen(PORT, () => {
         console.log(`🚀  Server running at http://localhost:${PORT}`);
         console.log(`📋  Health: http://localhost:${PORT}/api/health`);
+        startKeepAlive();
       });
     })
     .catch((err) => {
