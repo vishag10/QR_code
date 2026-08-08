@@ -22,6 +22,8 @@ const app = express();
 // Supports multiple allowed origins: localhost for dev + Netlify URL for prod.
 const allowedOrigins = [
   'http://localhost:5173',
+  'https://qr.tradearnfintech.com',
+  'https://tradern.netlify.app',
   process.env.CLIENT_ORIGIN,
 ].filter(Boolean);
 
